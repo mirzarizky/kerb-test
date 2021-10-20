@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\BookingPaymentController;
+use App\Http\Controllers\Api\BookingPriceController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
 use Illuminate\Http\Request;
@@ -30,6 +31,7 @@ Route::prefix('auth')->group(function () {
 
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('booking/price/{booking}', BookingPriceController::class);
     Route::post('booking', [BookingController::class, 'store']);
     Route::post('booking/pay/{booking}', BookingPaymentController::class);
 });

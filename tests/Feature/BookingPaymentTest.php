@@ -32,7 +32,7 @@ class BookingPaymentTest extends TestCase
         // assert bay is occupied
         $this->assertEquals(true, $bay->is_occupied);
         // perform payment
-        $this->postJson("api/booking/pay/{$booking->getKey()}")
+        $this->postJson("/api/booking/pay/{$booking->getKey()}")
             ->assertOk();
         // assert booking was paid
         $this->assertEquals(true, ($booking->fresh())->isPaid());
@@ -53,7 +53,7 @@ class BookingPaymentTest extends TestCase
 
         Sanctum::actingAs($currentUser);
 
-        $this->postJson("api/booking/pay/{$booking->getKey()}")
+        $this->postJson("/api/booking/pay/{$booking->getKey()}")
             ->assertForbidden();
     }
 }
