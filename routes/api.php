@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
 use Illuminate\Http\Request;
@@ -24,4 +25,9 @@ Route::prefix('auth')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('logout', LogoutController::class);
     });
+});
+
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::post('booking', [BookingController::class, 'store']);
 });
