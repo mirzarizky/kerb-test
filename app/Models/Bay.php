@@ -43,6 +43,7 @@ class Bay extends Model
     ];
 
     protected $casts = [
+        'user_id'     => 'integer',
         'is_occupied' => 'boolean',
     ];
 

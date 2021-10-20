@@ -48,9 +48,16 @@ class Booking extends Model
     ];
 
     protected $casts = [
+        'bay_id'     => 'integer',
+        'user_id'    => 'integer',
         'start_time' => 'datetime',
         'paid_at'    => 'datetime'
     ];
+
+    public function isPaid(): bool
+    {
+        return ! is_null($this->paid_at);
+    }
 
     public function bay()
     {
