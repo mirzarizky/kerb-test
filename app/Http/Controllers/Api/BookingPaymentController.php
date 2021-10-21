@@ -13,7 +13,8 @@ class BookingPaymentController extends Controller
 {
     public function __invoke(Booking $booking)
     {
-        abort_if($booking->user_id != auth()->id(), 403);
+        abort_if($booking->user_id != auth()->id(), 403, 'Forbidden.');
+        abort_if($booking->isPaid(), 422, 'Booking already paid.');
 
         if (!$booking->isPaid()) {
             $booking->load(['bay']);

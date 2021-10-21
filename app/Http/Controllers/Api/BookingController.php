@@ -43,11 +43,11 @@ class BookingController extends Controller
                 return $newBooking;
             });
         } catch (LockTimeoutException $e) {
-            return;
+            abort(429, 'Try again.');
         } finally {
             optional($lock)->release();
         }
 
-        return Response::json(new BookingResource($booking), 201);
+        return Response::json(new BookingResource($booking->load(['bay'])), 201);
     }
 }

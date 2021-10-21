@@ -12,8 +12,8 @@ class BookingPriceController extends Controller
 {
     public function __invoke(Booking $booking)
     {
-        abort_if($booking->user_id != auth()->id(), 403);
-        abort_if($booking->isPaid(), 403, 'Booking already paid.');
+        abort_if($booking->user_id != auth()->id(), 403, 'Action denied');
+        abort_if($booking->isPaid(), 422, 'Booking already paid.');
 
         $price = CalculatePriceByHour::run($booking->start_time);
 
