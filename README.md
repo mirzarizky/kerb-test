@@ -38,7 +38,7 @@ I created dummy database seeder to testing. The seeds contains:
 2. 2 Users with email `user@email.com` & `user2@email.com`
    
 ```sh
-php artisan db:seed --clas=DummySeeder
+php artisan db:seed --class=DummySeeder
 ```
 
 ## Testing
